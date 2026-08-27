@@ -1,0 +1,170 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exclusive School Trial - GBK</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --border: #334155;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); display: flex; justify-content: center; padding: 2rem 1rem; }
+    .container { max-width: 640px; width: 100%; background: var(--card); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+    h1 { font-size: 1.5rem; margin-bottom: 0.5rem; color: #fff; }
+    p.subtitle { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    
+    .form-group { margin-bottom: 1.25rem; }
+    label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; color: #cbd5e1; }
+    input, select, textarea { width: 100%; padding: 0.75rem; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: #fff; font-size: 0.95rem; }
+    input:focus, select:focus { outline: 2px solid var(--accent); border-color: transparent; }
+    
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 480px) { .grid-2 { grid-template-columns: 1fr; } }
+    
+    .letter-box { background: rgba(37, 99, 235, 0.1); border: 1px dashed var(--accent); padding: 1rem; border-radius: 6px; margin-bottom: 1.25rem; }
+    .letter-box h4 { font-size: 0.85rem; color: #60a5fa; margin-bottom: 0.5rem; }
+    .letter-box p { font-size: 0.8rem; color: var(--muted); line-height: 1.4; white-space: pre-line; }
+    .btn-download { display: inline-block; margin-top: 0.5rem; font-size: 0.8rem; color: #60a5fa; text-decoration: underline; cursor: pointer; }
+
+    button[type="submit"] { width: 100%; padding: 0.85rem; background: var(--accent); color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    button[type="submit"]:hover { background: var(--accent-hover); }
+    #status { margin-top: 1rem; text-align: center; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>School Free Trial RSVP</h1>
+  <p class="subtitle">Invitation-only venue reservation for official school & university delegations.</p>
+
+  <form id="rsvpForm">
+    <div class="form-group">
+      <label for="schoolName">School / University Name *</label>
+      <input type="text" id="schoolName" name="schoolName" placeholder="e.g. Jakarta International High School" required>
+    </div>
+
+    <div class="grid-2">
+      <div class="form-group">
+        <label for="picName">PIC Name *</label>
+        <input type="text" id="picName" name="picName" placeholder="Full Name" required>
+      </div>
+      <div class="form-group">
+        <label for="contact">Contact (WhatsApp / Email) *</label>
+        <input type="text" id="contact" name="contact" placeholder="+62... or email@school.ac.id" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="facility">Facility Selected *</label>
+      <select id="facility" name="facility" required>
+        <option value="" disabled selected>-- Select Court / Venue --</option>
+        <option value="Outdoor Basketball - Court 1">Outdoor Basketball - Court 1</option>
+        <option value="Outdoor Basketball - Court 2">Outdoor Basketball - Court 2</option>
+        <option value="Outdoor Basketball - Court 3">Outdoor Basketball - Court 3</option>
+        <option value="Indoor Basketball">Indoor Basketball Court</option>
+        <option value="Ping Pong - Room 1 (2 Tables)">Ping Pong - Room 1 (2 Tables)</option>
+        <option value="Ping Pong - Room 2 (2 Tables)">Ping Pong - Room 2 (2 Tables)</option>
+        <option value="Speed Climbing Wall">Speed Climbing Wall</option>
+      </select>
+    </div>
+
+    <div class="grid-2">
+      <div class="form-group">
+        <label for="reserveDate">Date & Session Time * (2 Hours)</label>
+        <input type="datetime-local" id="reserveDate" name="reserveDate" required>
+      </div>
+      <div class="form-group">
+        <label for="attendees">Number of Attendees *</label>
+        <input type="number" id="attendees" name="attendees" min="1" max="100" placeholder="e.g. 15" required>
+      </div>
+    </div>
+
+    <div class="letter-box">
+      <h4>Official Request Letter Requirement</h4>
+      <p>Submissions require an official request letter signed by the Head of Sports, Principal, or Dean.</p>
+      <a class="btn-download" onclick="toggleTemplate()">[View Official Letter Template]</a>
+      <p id="templateText" style="display:none; margin-top:0.5rem; background:#0f172a; padding:0.5rem; border-radius:4px; font-family:monospace;">
+To: Venue Management
+Subject: Request for Venue Free Trial
+
+We hereby request a 2-hour trial session for [School Name] on [Date] for [Facility Name]. Total expected attendees: [Number].
+
+Signed,
+[PIC Name / Sports Director]
+      </p>
+    </div>
+
+    <div class="form-group">
+      <label for="officialLetter">Upload Signed Official Letter (PDF/JPG/PNG) *</label>
+      <input type="file" id="officialLetter" name="officialLetter" accept=".pdf,.jpg,.jpeg,.png" required>
+    </div>
+
+    <button type="submit" id="submitBtn">Submit Reservation</button>
+    <div id="status"></div>
+  </form>
+</div>
+
+<script>
+  // Paste your Google Apps Script Web App URL here
+  const SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL";
+
+  function toggleTemplate() {
+    const el = document.getElementById('templateText');
+    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  }
+
+  document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const status = document.getElementById('status');
+    const submitBtn = document.getElementById('submitBtn');
+    
+    status.innerText = "Uploading & Submitting...";
+    submitBtn.disabled = true;
+
+    const fileInput = document.getElementById('officialLetter');
+    const file = fileInput.files[0];
+    
+    // Convert File to Base64 to post straight to Google Apps Script / Google Drive
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = async function() {
+      const base64File = reader.result.split(',')[1];
+      
+      const payload = {
+        schoolName: document.getElementById('schoolName').value,
+        picName: document.getElementById('picName').value,
+        contact: document.getElementById('contact').value,
+        facility: document.getElementById('facility').value,
+        reserveDate: document.getElementById('reserveDate').value,
+        attendees: document.getElementById('attendees').value,
+        fileData: base64File,
+        fileName: file.name,
+        fileMimeType: file.type
+      };
+
+      try {
+        const response = await fetch(SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify(payload)
+        });
+        
+        status.innerHTML = "<span style='color: #4ade80;'>Reservation submitted successfully!</span>";
+        document.getElementById('rsvpForm').reset();
+      } catch (err) {
+        status.innerHTML = "<span style='color: #f87171;'>Submission failed. Check connection or script URL.</span>";
+      } finally {
+        submitBtn.disabled = false;
+      }
+    };
+  });
+</script>
+
+</body>
+</html>
