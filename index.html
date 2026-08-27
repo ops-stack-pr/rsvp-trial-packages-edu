@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -12,37 +13,46 @@
       --text: #f8fafc;
       --muted: #94a3b8;
       --border: #334155;
+      --error: #ef4444;
+      --success: #22c55e;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    body { background-color: var(--bg); color: var(--text); display: flex; justify-content: center; padding: 2rem 1rem; }
-    .container { max-width: 640px; width: 100%; background: var(--card); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
-    h1 { font-size: 1.5rem; margin-bottom: 0.5rem; color: #fff; }
-    p.subtitle { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    body { background-color: var(--bg); color: var(--text); display: flex; justify-content: center; padding: 2rem 1rem; min-height: 100vh; align-items: center; }
+    .container { max-width: 640px; width: 100%; background: var(--card); padding: 2.5rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+    h1 { font-size: 1.6rem; margin-bottom: 0.5rem; color: #fff; text-align: center; }
+    p.subtitle { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.8rem; text-align: center; line-height: 1.4; }
     
     .form-group { margin-bottom: 1.25rem; }
     label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; color: #cbd5e1; }
-    input, select, textarea { width: 100%; padding: 0.75rem; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: #fff; font-size: 0.95rem; }
+    input, select { width: 100%; padding: 0.75rem; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: #fff; font-size: 0.95rem; }
     input:focus, select:focus { outline: 2px solid var(--accent); border-color: transparent; }
     
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    @media (max-width: 480px) { .grid-2 { grid-template-columns: 1fr; } }
+    @media (max-width: 520px) { .grid-2 { grid-template-columns: 1fr; } }
     
-    .letter-box { background: rgba(37, 99, 235, 0.1); border: 1px dashed var(--accent); padding: 1rem; border-radius: 6px; margin-bottom: 1.25rem; }
-    .letter-box h4 { font-size: 0.85rem; color: #60a5fa; margin-bottom: 0.5rem; }
-    .letter-box p { font-size: 0.8rem; color: var(--muted); line-height: 1.4; white-space: pre-line; }
+    .letter-box { background: rgba(37, 99, 235, 0.08); border: 1px dashed var(--accent); padding: 1rem; border-radius: 6px; margin-bottom: 1.25rem; }
+    .letter-box h4 { font-size: 0.85rem; color: #60a5fa; margin-bottom: 0.4rem; }
+    .letter-box p { font-size: 0.8rem; color: var(--muted); line-height: 1.4; }
     .btn-download { display: inline-block; margin-top: 0.5rem; font-size: 0.8rem; color: #60a5fa; text-decoration: underline; cursor: pointer; }
+    .file-hint { font-size: 0.75rem; color: #fbbf24; margin-top: 0.3rem; display: block; }
 
-    button[type="submit"] { width: 100%; padding: 0.85rem; background: var(--accent); color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    button[type="submit"] { width: 100%; padding: 0.9rem; background: var(--accent); color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: background 0.2s; margin-top: 0.5rem; }
     button[type="submit"]:hover { background: var(--accent-hover); }
-    #status { margin-top: 1rem; text-align: center; font-size: 0.9rem; }
+    button[type="submit"]:disabled { background: #475569; cursor: not-allowed; }
+    
+    #status { margin-top: 1.2rem; text-align: center; font-size: 0.9rem; padding: 0.75rem; border-radius: 6px; display: none; }
+    #status.active { display: block; }
+    #status.success { background: rgba(34, 197, 94, 0.15); border: 1px solid var(--success); color: #4ade80; }
+    #status.error { background: rgba(239, 68, 68, 0.15); border: 1px solid var(--error); color: #f87171; }
+    #status.loading { background: rgba(37, 99, 235, 0.15); border: 1px solid var(--accent); color: #60a5fa; }
   </style>
 </head>
 <body>
 
 <div class="container">
   <h1>School Free Trial RSVP</h1>
-  <p class="subtitle">Invitation-only venue reservation for official school & university delegations.</p>
+  <p class="subtitle">Exclusive venue trial reservation for verified schools & universities.</p>
 
   <form id="rsvpForm">
     <div class="form-group">
@@ -87,38 +97,22 @@
     </div>
 
     <div class="letter-box">
-      <h4>Official Permohonan Free Trial Fasilitas Olahraga</h4>
-      <p>Submissions require an official request letter signed by the Head of Sports, Principal</p>
-      <a class="btn-download" onclick="toggleTemplate()">[View Official Letter Template]</a>
-      <p id="templateText" style="display:none; margin-top:0.5rem; background:#0f172a; padding:0.5rem; border-radius:4px; font-family:monospace;">
-Kepada Yth.
-Pusat Pengelolaan Komplek Gelora Bung Karno (PPKGBK)
-Jl. Pintu Satu Senayan, Jakarta 10270
-
-Perihal: Permohonan Free Trial Fasilitas
-
-Dengan hormat,
-
-Sehubungan dengan rencana pelaksanaan kegiatan olahraga, kami bermaksud mengajukan permohonan sesi uji coba penggunaan fasilitas (Free Trial) selama 2 (dua) jam untuk [Nama Sekolah/Institusi], dengan rincian sebagai berikut:
-
-Hari/Tanggal: [Tanggal]
-Nama Fasilitas: [Nama Fasilitas]
-Jumlah Peserta: [Jumlah Peserta] orang
-Durasi Penggunaan: 2 (dua) jam
-
-Demikian permohonan ini kami sampaikan. Atas perhatian dan kerja samanya, kami ucapkan terima kasih.
-
-Hormat kami,
-
-[Nama PIC / Direktur Olahraga]
-[Jabatan]
-[Nama Sekolah/Institusi]
+      <h4>Official Submission Letter Requirement</h4>
+      <p>Please upload an official request letter signed by your Sports Director, Principal, or Dean.</p>
+      <a class="btn-download" onclick="toggleTemplate()">[View Sample Request Letter Format]</a>
+      <p id="templateText" style="display:none; margin-top:0.5rem; background:#0f172a; padding:0.6rem; border-radius:4px; font-family:monospace; color:#cbd5e1; font-size:0.75rem;">
+To: Venue Management<br>
+Subject: Request for Venue Free Trial Session<br><br>
+We hereby request a 2-hour trial session for [School Name] on [Date] for [Facility Name]. Total expected attendees: [Number].<br><br>
+Signed,<br>
+[PIC Name / Sports Lead]
       </p>
     </div>
 
     <div class="form-group">
-      <label for="officialLetter">Upload Signed Official Letter (PDF/JPG/PNG) *</label>
-      <input type="file" id="officialLetter" name="officialLetter" accept=".pdf,.jpg,.jpeg,.png" required>
+      <label for="officialLetter">Upload Signed Official Letter (PDF Only, Max 5MB) *</label>
+      <input type="file" id="officialLetter" name="officialLetter" accept=".pdf,application/pdf" required>
+      <span class="file-hint">⚠️ PDF format only. Maximum file size allowed is 5 MB.</span>
     </div>
 
     <button type="submit" id="submitBtn">Submit Reservation</button>
@@ -127,7 +121,7 @@ Hormat kami,
 </div>
 
 <script>
-  // Paste your Google Apps Script Web App URL here
+  // Configured with your live Google Apps Script Web App Executable URL
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyzV87ushM6p6L4PHWFklq4YanWSf_LIpzAMJ1vuBZqY27J44KNzriA4hbeltt5Mw47/exec";
 
   function toggleTemplate() {
@@ -135,18 +129,43 @@ Hormat kami,
     el.style.display = el.style.display === 'none' ? 'block' : 'none';
   }
 
+  // File size & format validation (PDF, <= 5MB)
+  document.getElementById('officialLetter').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const isPdf = file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf');
+    if (!isPdf) {
+      alert("Invalid file type! Please upload a PDF document (.pdf).");
+      e.target.value = "";
+      return;
+    }
+
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    if (file.size > maxSize) {
+      alert(`File size exceeds 5MB limit! (${(file.size / (1024 * 1024)).toFixed(2)} MB uploaded).`);
+      e.target.value = "";
+      return;
+    }
+  });
+
   document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const status = document.getElementById('status');
     const submitBtn = document.getElementById('submitBtn');
-    
-    status.innerText = "Uploading & Submitting...";
-    submitBtn.disabled = true;
 
     const fileInput = document.getElementById('officialLetter');
     const file = fileInput.files[0];
-    
-    // Convert File to Base64 to post straight to Google Apps Script / Google Drive
+
+    if (!file) {
+      alert("Please select a PDF file to upload.");
+      return;
+    }
+
+    status.className = "active loading";
+    status.innerText = "Processing submission and uploading PDF...";
+    submitBtn.disabled = true;
+
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = async function() {
@@ -161,19 +180,32 @@ Hormat kami,
         attendees: document.getElementById('attendees').value,
         fileData: base64File,
         fileName: file.name,
-        fileMimeType: file.type
+        fileMimeType: "application/pdf"
       };
 
       try {
         const response = await fetch(SCRIPT_URL, {
           method: 'POST',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
           body: JSON.stringify(payload)
         });
-        
-        status.innerHTML = "<span style='color: #4ade80;'>Reservation submitted successfully!</span>";
-        document.getElementById('rsvpForm').reset();
+
+        const result = await response.json();
+
+        if (result.status === "SUCCESS") {
+          status.className = "active success";
+          status.innerHTML = "✅ Reservation submitted successfully! We will review your official letter shortly.";
+          document.getElementById('rsvpForm').reset();
+        } else {
+          status.className = "active error";
+          status.innerHTML = "❌ Submission Error: " + (result.message || "Unable to save to database.");
+        }
       } catch (err) {
-        status.innerHTML = "<span style='color: #f87171;'>Submission failed. Check connection or script URL.</span>";
+        console.error(err);
+        status.className = "active error";
+        status.innerHTML = "❌ Connection error. Verify deployment access permissions on Google Apps Script.";
       } finally {
         submitBtn.disabled = false;
       }
