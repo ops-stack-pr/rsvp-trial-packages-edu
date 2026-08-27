@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exclusive School Trial RSVP</title>
+  <title>Complimentary Venue Trial Program for Schools & Universities</title>
   <style>
     :root {
       --bg: #0f172a;
@@ -51,10 +51,10 @@
 <body>
 
 <div class="container">
-  <h1>School Free Trial RSVP</h1>
+  <h1>Complimentary Venue Trial Program for Schools & Universities</h1>
   <p class="subtitle">Exclusive venue trial reservation for verified schools & universities.</p>
 
-  <form id="rsvpForm">
+  <form id="Complimentary Venue Trial Program for Schools & UniversitiesForm">
     <div class="form-group">
       <label for="schoolName">School / University Name *</label>
       <input type="text" id="schoolName" name="schoolName" placeholder="e.g. Jakarta International High School" required>
@@ -166,7 +166,7 @@ Hormat kami,<br><br><br><br>
     }
   });
 
-  document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
+  document.getElementById('Complimentary Venue Trial Program for Schools & UniversitiesForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const status = document.getElementById('status');
     const submitBtn = document.getElementById('submitBtn');
@@ -214,7 +214,7 @@ Hormat kami,<br><br><br><br>
         if (result.status === "SUCCESS") {
           status.className = "active success";
           status.innerHTML = "✅ Reservation submitted successfully! We will review your official letter shortly.";
-          document.getElementById('rsvpForm').reset();
+          document.getElementById('Complimentary Venue Trial Program for Schools & UniversitiesForm').reset();
         } else {
           status.className = "active error";
           status.innerHTML = "❌ Submission Error: " + (result.message || "Unable to save to database.");
