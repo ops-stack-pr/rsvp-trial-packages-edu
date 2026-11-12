@@ -1,9 +1,8 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Complimentary Venue Trial Program for Schools & Universities</title>
+  <title>Complimentary for Free Trial for #GBKPeople</title>
   <style>
     :root {
       --bg: #0f172a;
@@ -32,9 +31,9 @@
     @media (max-width: 520px) { .grid-2 { grid-template-columns: 1fr; } }
     
     .letter-box { background: rgba(37, 99, 235, 0.08); border: 1px dashed var(--accent); padding: 1rem; border-radius: 6px; margin-bottom: 1.25rem; }
-    .letter-box h4 { font-size: 0.85rem; color: #60a5fa; margin-bottom: 0.4rem; }
-    .letter-box p { font-size: 0.8rem; color: var(--muted); line-height: 1.4; }
-    .btn-download { display: inline-block; margin-top: 0.5rem; font-size: 0.8rem; color: #60a5fa; text-decoration: underline; cursor: pointer; }
+    .letter-box h4 { font-size: 0.85rem; color: #60a5fa; margin-bottom: 0.8rem; }
+    .letter-box ul { font-size: 0.8rem; color: var(--muted); line-height: 1.5; padding-left: 1.2rem; }
+    .letter-box li { margin-bottom: 0.4rem; }
     .file-hint { font-size: 0.75rem; color: #fbbf24; margin-top: 0.3rem; display: block; }
 
     button[type="submit"] { width: 100%; padding: 0.9rem; background: var(--accent); color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: background 0.2s; margin-top: 0.5rem; }
@@ -51,84 +50,64 @@
 <body>
 
 <div class="container">
-  <h1>Complimentary Venue Trial Program for Schools & Universities</h1>
-  <p class="subtitle">Exclusive venue trial reservation for verified schools & universities.</p>
+  <h1>Complimentary for Free Trial for #GBKPeople</h1>
+  <p class="subtitle">Exclusive venue trial reservation for #GBKPeople.</p>
 
   <form id="rsvpForm">
     <div class="form-group">
-      <label for="schoolName">School / University Name *</label>
-      <input type="text" id="schoolName" name="schoolName" placeholder="e.g. Jakarta International High School" required>
+      <label for="name">Name / Nama *</label>
+      <input type="text" id="name" name="name" placeholder="Full Name" required>
     </div>
 
     <div class="grid-2">
       <div class="form-group">
-        <label for="picName">PIC Name *</label>
-        <input type="text" id="picName" name="picName" placeholder="Full Name" required>
+        <label for="instagram">Instagram Account</label>
+        <input type="text" id="instagram" name="instagram" placeholder="@username">
       </div>
       <div class="form-group">
-        <label for="contact">Contact (WhatsApp / Email) *</label>
-        <input type="text" id="contact" name="contact" placeholder="+62... or email@school.ac.id" required>
+        <label for="whatsapp">WhatsApp *</label>
+        <input type="text" id="whatsapp" name="whatsapp" placeholder="+62..." required>
       </div>
     </div>
 
     <div class="form-group">
       <label for="facility">Facility Selected *</label>
       <select id="facility" name="facility" required>
-        <option value="" disabled selected>-- Select Court / Venue --</option>
-        <option value="Outdoor Basketball - Court 1">Outdoor Basketball - Court 1</option>
-        <option value="Outdoor Basketball - Court 2">Outdoor Basketball - Court 2</option>
-        <option value="Outdoor Basketball - Court 3">Outdoor Basketball - Court 3</option>
-        <option value="Indoor Basketball">Indoor Basketball Court</option>
-        <option value="Ping Pong - Room 1 (2 Tables)">Ping Pong - Room 1 (2 Tables)</option>
-        <option value="Ping Pong - Room 2 (2 Tables)">Ping Pong - Room 2 (2 Tables)</option>
-        <option value="Speed Climbing Wall">Speed Climbing Wall</option>
+        <option value="" disabled selected>-- Select Facility --</option>
+        <option value="Tennis Meja">Tennis Meja</option>
+        <option value="Badminton">Badminton</option>
+        <option value="Swimming">Swimming</option>
       </select>
     </div>
 
     <div class="grid-2">
       <div class="form-group">
         <label for="reserveDate">Date & Session Time * (2 Hours)</label>
-        <input type="datetime-local" id="reserveDate" name="reserveDate" required>
+        <!-- max attribute restricts selection to the end of 2026 -->
+        <input type="datetime-local" id="reserveDate" name="reserveDate" max="2026-12-31T23:59" required>
       </div>
       <div class="form-group">
-        <label for="attendees">Number of Attendees *</label>
-        <input type="number" id="attendees" name="attendees" min="1" max="100" placeholder="e.g. 15" required>
+        <label for="voucherNumber">Number of voucher number *</label>
+        <input type="number" id="voucherNumber" name="voucherNumber" min="1" placeholder="e.g. 1" required>
       </div>
     </div>
 
     <div class="letter-box">
-      <h4>Official Submission Letter Requirement</h4>
-      <p>Silakan unggah surat permohonan resmi yang ditandatangani oleh Pelatih, Kepala Sekolah, atau Rektor.</p>
-      <a class="btn-download" onclick="toggleTemplate()">[View Sample Request Letter Format]</a>
-      <p id="templateText" style="display:none; margin-top:0.5rem; background:#0f172a; padding:0.6rem; border-radius:4px; font-family:monospace; color:#cbd5e1; font-size:0.75rem;">
-Kepada Yth.<br>
-Pusat Pengelolaan Komplek Gelora Bung Karno (PPKGBK)<br>
-Jl. Pintu Satu Senayan, Jakarta 10270<br><br>
-
-<strong>Perihal: Permohonan Free Trial Fasilitas Olahraga</strong><br><br>
-
-Dengan hormat,<br><br>
-
-Sehubungan dengan rencana pelaksanaan kegiatan olahraga, kami bermaksud mengajukan permohonan sesi uji coba penggunaan fasilitas (Free Trial) untuk <strong>[Nama Sekolah/Universitas]</strong>, dengan rincian sebagai berikut:<br><br>
-
-- Hari/Tanggal: [Tanggal]<br>
-- Nama Fasilitas: [Nama Fasilitas]<br>
-- Jumlah Peserta: [Jumlah Peserta] orang<br><br>
-
-Demikian permohonan ini kami sampaikan. Atas perhatian dan kerja samanya, kami ucapkan terima kasih.<br><br>
-
-Hormat kami,<br><br><br><br>
-
-[Nama PIC / Kepala Sekolah / Kaprodi]<br>
-[Jabatan]<br>
-[Nama Sekolah/Institusi]
-      </p>
+      <h4>Tnc Claim Free Voucher for #GBKPeople</h4>
+      <ul>
+        <li>For Swimming Voucher only valid for 1 Person and only at public hour</li>
+        <li>For Tennis Meja and Badminton only valid at Selasa & Jumat max 12 pm</li>
+        <li>Only court, we dont provide racket or shuttlecok, bat tennis meja.</li>
+        <li>Max person can be play 4 person for court</li>
+        <li>Make sure to RSVP H-3 before attend</li>
+        <li>Bring your phycial voucher at venue to claim your voucher</li>
+      </ul>
     </div>
 
     <div class="form-group">
-      <label for="officialLetter">Upload Signed Official Letter (PDF Only, Max 5MB) *</label>
-      <input type="file" id="officialLetter" name="officialLetter" accept=".pdf,application/pdf" required>
-      <span class="file-hint">⚠️ PDF format only. Maximum file size allowed is 5 MB.</span>
+      <label for="voucherUpload">Upload your voucher (jpg max 5mb) *</label>
+      <input type="file" id="voucherUpload" name="voucherUpload" accept=".jpg,.jpeg,image/jpeg" required>
+      <span class="file-hint">⚠️ JPG format only. Maximum file size allowed is 5 MB.</span>
     </div>
 
     <button type="submit" id="submitBtn">Submit Reservation</button>
@@ -139,18 +118,13 @@ Hormat kami,<br><br><br><br>
 <script>
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxgMM2q4w4edQsAu5Atvbx0lJwsWNJ7K9nBSjdkHIMj4_yAvjs7qfOjZmm7mFc8AlUh/exec";
 
-  function toggleTemplate() {
-    const el = document.getElementById('templateText');
-    el.style.display = el.style.display === 'none' ? 'block' : 'none';
-  }
-
-  document.getElementById('officialLetter').addEventListener('change', function(e) {
+  document.getElementById('voucherUpload').addEventListener('change', function(e) {
     const file = e.target.files[0];
     if (!file) return;
 
-    const isPdf = file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf');
-    if (!isPdf) {
-      alert("Invalid file type! Please upload a PDF document (.pdf).");
+    const isJpg = file.type === 'image/jpeg' || file.name.toLowerCase().endsWith('.jpg') || file.name.toLowerCase().endsWith('.jpeg');
+    if (!isJpg) {
+      alert("Invalid file type! Please upload a JPG image (.jpg or .jpeg).");
       e.target.value = "";
       return;
     }
@@ -168,16 +142,16 @@ Hormat kami,<br><br><br><br>
     const status = document.getElementById('status');
     const submitBtn = document.getElementById('submitBtn');
 
-    const fileInput = document.getElementById('officialLetter');
+    const fileInput = document.getElementById('voucherUpload');
     const file = fileInput.files[0];
 
     if (!file) {
-      alert("Please select a PDF file to upload.");
+      alert("Please select a JPG file to upload.");
       return;
     }
 
     status.className = "active loading";
-    status.innerText = "Processing submission and uploading PDF...";
+    status.innerText = "Processing submission and uploading voucher...";
     submitBtn.disabled = true;
 
     const reader = new FileReader();
@@ -186,15 +160,15 @@ Hormat kami,<br><br><br><br>
       const base64File = reader.result.split(',')[1];
       
       const payload = {
-        schoolName: document.getElementById('schoolName').value,
-        picName: document.getElementById('picName').value,
-        contact: document.getElementById('contact').value,
+        name: document.getElementById('name').value,
+        instagram: document.getElementById('instagram').value,
+        whatsapp: document.getElementById('whatsapp').value,
         facility: document.getElementById('facility').value,
         reserveDate: document.getElementById('reserveDate').value,
-        attendees: document.getElementById('attendees').value,
+        voucherNumber: document.getElementById('voucherNumber').value,
         fileData: base64File,
         fileName: file.name,
-        fileMimeType: "application/pdf"
+        fileMimeType: file.type || "image/jpeg"
       };
 
       try {
@@ -210,7 +184,7 @@ Hormat kami,<br><br><br><br>
 
         if (result.status === "SUCCESS") {
           status.className = "active success";
-          status.innerHTML = "✅ Reservation submitted successfully! We will review your official letter shortly.";
+          status.innerHTML = "✅ Reservation submitted successfully! We will review your voucher shortly.";
           document.getElementById('rsvpForm').reset();
         } else {
           status.className = "active error";
