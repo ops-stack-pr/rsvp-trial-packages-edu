@@ -83,26 +83,25 @@
     <div class="grid-2">
       <div class="form-group">
         <label for="reserveDate">Date & Session Time * (2 Hours)</label>
-        <!-- max attribute restricts selection to the end of 2026 -->
         <input type="datetime-local" id="reserveDate" name="reserveDate" max="2026-12-31T23:59" required>
       </div>
       <div class="form-group">
-        <label for="voucherNumber">Voucher number *</label>
-        <input type="number" id="voucherNumber" name="voucherNumber" min="1" placeholder="e.g. GBKT001/GBKR002/GBKB003" required>
+        <label for="voucherNumber">Voucher Number *</label>
+        <input type="text" id="voucherNumber" name="voucherNumber" pattern="^(GBKT|GBKR|GBKB)[0-9]{3}$" title="Voucher must start with GBKT, GBKR, or GBKB followed by exactly 3 digits (e.g., GBKT001)" placeholder="e.g. GBKT001" oninput="this.value = this.value.toUpperCase()" required>
       </div>
     </div>
 
- <div class="letter-box">
-    <h4>Tnc Claim Free Voucher for #GBKPeople</h4>
-    <ul>
-        <li>Swimming vouchers are valid for 1 person only and restricted to public hours.</li>
-        <li>Table tennis (Tennis Meja) and badminton courts are valid strictly on Tuesdays and Fridays until 12:00 PM.</li>
-        <li>Bookings cover court access only; rackets, shuttlecocks, and table tennis bats are not provided.</li>
-        <li>A maximum of 4 players are permitted per court.</li>
-        <li>Reservations must be made at least 3 days in advance (H-3) prior to attendance.</li>
-        <li>Please bring your physical voucher to the venue to claim your session.</li>
-    </ul>
-</div>
+    <div class="letter-box">
+      <h4>Tnc Claim Free Voucher for #GBKPeople</h4>
+      <ul>
+          <li>Swimming vouchers are valid for 1 person only and restricted to public hours.</li>
+          <li>Table tennis (Tennis Meja) and badminton courts are valid strictly on Tuesdays and Fridays until 12:00 PM.</li>
+          <li>Bookings cover court access only; rackets, shuttlecocks, and table tennis bats are not provided.</li>
+          <li>A maximum of 4 players are permitted per court.</li>
+          <li>Reservations must be made at least 3 days in advance (H-3) prior to attendance.</li>
+          <li>Please bring your physical voucher to the venue to claim your session.</li>
+      </ul>
+    </div>
 
     <div class="form-group">
       <label for="voucherUpload">Upload your voucher (jpg max 5mb) *</label>
@@ -116,7 +115,8 @@
 </div>
 
 <script>
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwDhaiw0F_fXYAIUkShhz957TLNP1HWYWav6E2bWSNNmWp-6bQKRC7m93d5f69opCeS/exec";
+  // Ensure this points to your NEW Version 2 Web App URL
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxgMM2q4w4edQsAu5Atvbx0lJwsWNJ7K9nBSjdkHIMj4_yAvjs7qfOjZmm7mFc8AlUh/exec";
 
   document.getElementById('voucherUpload').addEventListener('change', function(e) {
     const file = e.target.files[0];
